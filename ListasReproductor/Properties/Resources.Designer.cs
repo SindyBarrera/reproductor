@@ -73,6 +73,26 @@ namespace ListasReproductor.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AgregarMultiples {
+            get {
+                object obj = ResourceManager.GetObject("AgregarMultiples", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap aleatorio {
+            get {
+                object obj = ResourceManager.GetObject("aleatorio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap anterior {
             get {
                 object obj = ResourceManager.GetObject("anterior", resourceCulture);
@@ -136,6 +156,16 @@ namespace ListasReproductor.Properties {
         internal static System.Drawing.Bitmap remover {
             get {
                 object obj = ResourceManager.GetObject("remover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap repetir {
+            get {
+                object obj = ResourceManager.GetObject("repetir", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

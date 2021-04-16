@@ -46,15 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clases\Lista.cs" />
-    <Compile Include="clases\Nodo.cs" />
-    <Compile Include="clases\objListaOrdenada.cs" />
+    <Compile Include="clasesListaSimple\Lista.cs" />
+    <Compile Include="clasesListaSimple\Nodo.cs" />
+    <Compile Include="clasesListaSimple\objListaOrdenada.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="listaCircularEj\ListaCircular.cs" />
+    <Compile Include="listaCircularEj\NodoCir.cs" />
+    <Compile Include="ListaDoble\clsListaDoble.cs" />
+    <Compile Include="ListaDoble\IteradorLista.cs" />
+    <Compile Include="ListaDoble\Nodo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -131,6 +136,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\listar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aleatorio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repetir.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AgregarMultiples.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

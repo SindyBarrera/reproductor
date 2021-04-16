@@ -1,4 +1,6 @@
 ﻿using ListasReproductor.clases;
+using ListasReproductor.listaCircularEj;
+using ListasReproductor.ListaDoble;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +15,15 @@ namespace ListasReproductor
 {
     public partial class Form1 : Form
     {
-        bool Play = false;
+        NodoCir nuevo;
+        String[] ArchivosMP3; //para almacenar todos los archivos seleccionados de forma temporal
+        String[] rutasArchivoMP3; 
+        
 
         OpenFileDialog CajaDeBusquedaDeArchivos = new OpenFileDialog(); //Para seleccionar las canciones que quiera
         objListaOrdenada addpath = new objListaOrdenada();
+        clsListaDoble ListaDoble = new clsListaDoble();
+        ListaCircular Circular = new ListaCircular();
 
 
         public Form1()
@@ -26,31 +33,36 @@ namespace ListasReproductor
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            
             CajaDeBusquedaDeArchivos.Multiselect = true; //Esto va a permitir seleccionar varios archivos al mismo tiempo
 
             //Este if se encarga de abrir la ventana
-            if (CajaDeBusquedaDeArchivos.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (CajaDeBusquedaDeArchivos.ShowDialog() == System.Windows.Forms.DialogResult.OK) //Para recolectar los datos de la caja de dialogo
             {
-                //ArchivosMP3 = CajaDeBusquedaDeArchivos.SafeFileNames;//Aqui se van a almacenar todos los archivos
+                rutasArchivoMP3 = CajaDeBusquedaDeArchivos.SafeFileNames; //Aqui se van a almacenar todos los archivos que seleccione
+                ArchivosMP3 = CajaDeBusquedaDeArchivos.FileNames; //Guardamos las rutas de los archivos temporal
 
                 //Para recorrer dependiendo de la cantidad de canciones que haya ingresado 
-                for (int i = 0; i < CajaDeBusquedaDeArchivos.FileNames.Length; i++) 
-                    //FileNames para devolver la extensión de la ruta de acceso del archivo
+                for (int i = 0; i < CajaDeBusquedaDeArchivos.FileNames.Length; i++)
                 {
-                    addpath.insertaOrden(CajaDeBusquedaDeArchivos.FileNames[i]); //Para insertarlas a la lista
-                   
-                    //Para insertarlas al listbox
-                    lstCanciones.Items.Add(CajaDeBusquedaDeArchivos.SafeFileNames[i]); 
-                    //SafeFileNames para obtener el nombre y la extensión del archivo seleccionado
+                    string rutas;
+                    rutas = rutasArchivoMP3[i]; //Para que vaya tomando el valor de cada ruta almacenada en el arreglo rutasArchivoMP3
+                    //addpath.insertaOrden(dt); //Para insertarlas a la lista doble
+                    ListaDoble.insertarCabezaLista(rutas); //Para insertar las canciones que tengo almacenadas en el vector a la lista doble
+                    Circular.insertar(rutas); //Para insertar las canciones a la lista circular
                 }
 
+                string[] datos = ListaDoble.vizualizarTam(); //Tomando los datos de la Lista y agregandolos a un arreglo para calcular el tamaño
 
-                Reproductor.URL = CajaDeBusquedaDeArchivos.FileNames[0];
-                lstCanciones.SelectedIndex = 0; //SelectedIndex para obtener el índice del elemento seleccionado
+                foreach (string dato in datos) //Para leer cada uno de los archivos mp3 que adjunte
+                {
+                    lstCanciones.Items.Add(dato); //Agregando las canciones al listbox    
+                }
+                //Reproductor.URL = CajaDeBusquedaDeArchivos.FileNames[0];
+                //lstCanciones.SelectedIndex = 0; //SelectedIndex para obtener el índice del elemento seleccionado
 
                 int pausa;
                 pausa = 0;
+
 
             }
         }
@@ -59,23 +71,30 @@ namespace ListasReproductor
         {
             //Insertar las canciones al listbox
             //Va a ejecutarse mientras selectedIndex sea diferente a -1
-            if (lstCanciones.SelectedIndex != -1)
+            if (lstCanciones.SelectedIndex != -1) //diferente a -1 porque si el valor es -1 significa que no se ha seleccionado ningún valor.
             {
-    //Esto va a hacer que cuando el usuario seleccione de la lista de reproduccion automaticamente se reproduzca en windows media player
-                Reproductor.URL = CajaDeBusquedaDeArchivos.FileNames[lstCanciones.SelectedIndex];  
+                //Esto va a hacer que cuando el usuario seleccione de la lista de reproduccion automaticamente se reproduzca en windows media player
+                Reproductor.URL = CajaDeBusquedaDeArchivos.FileNames[lstCanciones.SelectedIndex];
+                int index= lstCanciones.SelectedIndex; 
+                nuevo = new NodoCir(CajaDeBusquedaDeArchivos.FileNames[index]);
                 
             }
         }
 
         private void remover_Click(object sender, EventArgs e)
         {
+            String elim = CajaDeBusquedaDeArchivos.FileNames[lstCanciones.SelectedIndex];
             int eliminar = lstCanciones.SelectedIndex; //Para tomar la posicion a eliminar
 
-            if (lstCanciones.SelectedIndex != -1)
+            if (lstCanciones.SelectedIndex != -1) // diferente a - 1 porque si el valor es - 1 significa que no se ha seleccionado ningún valor.
             {
-                addpath.eliminar(eliminar);
+                ListaDoble.eliminar(elim);
+                Circular.eliminar(elim);
                 lstCanciones.Items.RemoveAt(eliminar); //Para eliminar lo que este en la posicion 
-                Reproductor.Ctlcontrols.stop();
+                
+            }else
+            {
+                MessageBox.Show("No se pudo eliminar la cancion");
             }
 
             int pausa;
@@ -94,18 +113,20 @@ namespace ListasReproductor
         private void btnStop_Click(object sender, EventArgs e)
         {
             Reproductor.Ctlcontrols.stop();
-            btnPlay.Image = Properties.Resources.iniciar;
-            Play = false;
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             //Pasar a la siguiente cancion
-            if (lstCanciones.SelectedIndex < lstCanciones.Items.Count - 1)
+            if (lstCanciones.SelectedIndex < lstCanciones.Items.Count - 1) //.items.Conut para obtener el número de elementos del de la lista
             {
                 lstCanciones.SelectedIndex = lstCanciones.SelectedIndex + 1;
-            }
+            }else
+            {
+                Repetir();
 
+            }
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
@@ -115,6 +136,11 @@ namespace ListasReproductor
             {
                 lstCanciones.SelectedIndex = lstCanciones.SelectedIndex- 1;
             }
+            else
+            {
+                MessageBox.Show("NO SE PUEDE RETROCEDER");
+
+            }
 
         }
 
@@ -123,8 +149,53 @@ namespace ListasReproductor
             Close();
         }
 
-      
-        
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            Random aleatorio = new Random(); //Inicializando una instancia de la clase Random
+            int ale = aleatorio.Next(lstCanciones.Items.Count - 1); //Para recorrer todo lo que esta dentro del listbox
+            Reproductor.URL = CajaDeBusquedaDeArchivos.FileNames[ale];
+            lstCanciones.SelectedIndex = ale;
+        }
+
+        private void Repeticion_Click(object sender, EventArgs e)
+        {
+            Repetir();
+
+        }
+
+        public void Repetir()
+        {
+
+            if (nuevo != null)
+            {
+                nuevo = Circular.lc.enlace;
+                                               
+                while (nuevo == Circular.lc.enlace)
+                {
+                    if (lstCanciones.SelectedIndex < lstCanciones.Items.Count - 1)
+                    {
+                        MessageBox.Show("AUN NO HA LLEGADO A LA ULTIMA CANCION");
+                        lstCanciones.SelectedIndex += 1;
+                        nuevo = nuevo.enlace;
+                    }
+                    else
+                    {
+                        MessageBox.Show("¿QUIERES VOLVER A LA PRIMERA CANCION DE LA LISTA?");
+                        Reproductor.URL = CajaDeBusquedaDeArchivos.FileNames[0];
+                        lstCanciones.SelectedIndex = 0;
+                        nuevo = nuevo.enlace;
+                    }
+
+                    nuevo = nuevo.enlace;
+                }
+            }
+            else
+            {
+                MessageBox.Show("\t LA LISTA SE ENCUENTRA VACIA.");
+            }
+        }
+
+
     }
 }
 

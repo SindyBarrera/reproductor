@@ -41,6 +41,8 @@ namespace ListasReproductor
             this.button1 = new System.Windows.Forms.Button();
             this.remover = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.Aleatorio = new System.Windows.Forms.PictureBox();
+            this.Repeticion = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Reproductor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnStop)).BeginInit();
@@ -50,6 +52,8 @@ namespace ListasReproductor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remover)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Aleatorio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Repeticion)).BeginInit();
             this.SuspendLayout();
             // 
             // Reproductor
@@ -58,7 +62,7 @@ namespace ListasReproductor
             this.Reproductor.Location = new System.Drawing.Point(85, 244);
             this.Reproductor.Name = "Reproductor";
             this.Reproductor.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("Reproductor.OcxState")));
-            this.Reproductor.Size = new System.Drawing.Size(474, 123);
+            this.Reproductor.Size = new System.Drawing.Size(617, 127);
             this.Reproductor.TabIndex = 0;
             // 
             // lstCanciones
@@ -67,16 +71,16 @@ namespace ListasReproductor
             this.lstCanciones.FormattingEnabled = true;
             this.lstCanciones.Location = new System.Drawing.Point(85, 52);
             this.lstCanciones.Name = "lstCanciones";
-            this.lstCanciones.Size = new System.Drawing.Size(474, 186);
+            this.lstCanciones.Size = new System.Drawing.Size(456, 186);
             this.lstCanciones.TabIndex = 1;
             this.lstCanciones.SelectedIndexChanged += new System.EventHandler(this.lstCanciones_SelectedIndexChanged);
             // 
             // btnAgregar
             // 
             this.btnAgregar.Image = global::ListasReproductor.Properties.Resources.agregar;
-            this.btnAgregar.Location = new System.Drawing.Point(594, 70);
+            this.btnAgregar.Location = new System.Drawing.Point(586, 52);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(67, 62);
+            this.btnAgregar.Size = new System.Drawing.Size(84, 80);
             this.btnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.TabStop = false;
@@ -85,7 +89,7 @@ namespace ListasReproductor
             // btnStop
             // 
             this.btnStop.Image = global::ListasReproductor.Properties.Resources.detener;
-            this.btnStop.Location = new System.Drawing.Point(207, 392);
+            this.btnStop.Location = new System.Drawing.Point(194, 392);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 62);
             this.btnStop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -96,7 +100,7 @@ namespace ListasReproductor
             // btnPlay
             // 
             this.btnPlay.Image = global::ListasReproductor.Properties.Resources.iniciar;
-            this.btnPlay.Location = new System.Drawing.Point(394, 392);
+            this.btnPlay.Location = new System.Drawing.Point(381, 392);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(77, 62);
             this.btnPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -107,7 +111,7 @@ namespace ListasReproductor
             // btnAnterior
             // 
             this.btnAnterior.Image = global::ListasReproductor.Properties.Resources.anterior;
-            this.btnAnterior.Location = new System.Drawing.Point(98, 392);
+            this.btnAnterior.Location = new System.Drawing.Point(85, 392);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(75, 62);
             this.btnAnterior.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -118,7 +122,7 @@ namespace ListasReproductor
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ListasReproductor.Properties.Resources.siguiente;
-            this.pictureBox1.Location = new System.Drawing.Point(495, 392);
+            this.pictureBox1.Location = new System.Drawing.Point(482, 392);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(75, 62);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -140,7 +144,7 @@ namespace ListasReproductor
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(683, 392);
+            this.button1.Location = new System.Drawing.Point(827, 429);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 42);
             this.button1.TabIndex = 12;
@@ -151,9 +155,9 @@ namespace ListasReproductor
             // remover
             // 
             this.remover.Image = global::ListasReproductor.Properties.Resources.remover;
-            this.remover.Location = new System.Drawing.Point(594, 159);
+            this.remover.Location = new System.Drawing.Point(586, 148);
             this.remover.Name = "remover";
-            this.remover.Size = new System.Drawing.Size(67, 64);
+            this.remover.Size = new System.Drawing.Size(84, 78);
             this.remover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.remover.TabIndex = 13;
             this.remover.TabStop = false;
@@ -162,7 +166,7 @@ namespace ListasReproductor
             // pictureBox3
             // 
             this.pictureBox3.Image = global::ListasReproductor.Properties.Resources.pausa;
-            this.pictureBox3.Location = new System.Drawing.Point(302, 392);
+            this.pictureBox3.Location = new System.Drawing.Point(289, 392);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(82, 62);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -170,12 +174,36 @@ namespace ListasReproductor
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
+            // Aleatorio
+            // 
+            this.Aleatorio.Image = global::ListasReproductor.Properties.Resources.aleatorio;
+            this.Aleatorio.Location = new System.Drawing.Point(593, 392);
+            this.Aleatorio.Name = "Aleatorio";
+            this.Aleatorio.Size = new System.Drawing.Size(77, 62);
+            this.Aleatorio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Aleatorio.TabIndex = 15;
+            this.Aleatorio.TabStop = false;
+            this.Aleatorio.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // Repeticion
+            // 
+            this.Repeticion.Image = global::ListasReproductor.Properties.Resources.repetir;
+            this.Repeticion.Location = new System.Drawing.Point(733, 261);
+            this.Repeticion.Name = "Repeticion";
+            this.Repeticion.Size = new System.Drawing.Size(87, 77);
+            this.Repeticion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Repeticion.TabIndex = 16;
+            this.Repeticion.TabStop = false;
+            this.Repeticion.Click += new System.EventHandler(this.Repeticion_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ListasReproductor.Properties.Resources.fondo;
-            this.ClientSize = new System.Drawing.Size(807, 483);
+            this.ClientSize = new System.Drawing.Size(934, 504);
+            this.Controls.Add(this.Repeticion);
+            this.Controls.Add(this.Aleatorio);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.remover);
             this.Controls.Add(this.button1);
@@ -198,6 +226,8 @@ namespace ListasReproductor
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.remover)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Aleatorio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Repeticion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -215,6 +245,8 @@ namespace ListasReproductor
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox remover;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox Aleatorio;
+        private System.Windows.Forms.PictureBox Repeticion;
     }
 }
 
